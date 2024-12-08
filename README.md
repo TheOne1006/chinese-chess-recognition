@@ -46,15 +46,14 @@
 目前采用 topdown 的方式, 预测 34 个关键点信息。用于透视变换。
 将棋盘转换为俯视图, 用于棋子识别
 
-<img src="assets/keypoints.png" alt="keypoints" style="max-height: 500px;" />
-
+![keypoints](assets/keypoints.png)
 
 
 #### 透视变换
 
 通过 4 个 角，和 将、帅 的位置，进行透视变换，将棋盘转换为俯视图
 
-<img src="assets/perspective.webp" alt="perspective" style="max-height: 500px;" />
+![perspective](assets/perspective.webp)
 
 
 #### !tips: 俯视图与原图识别
@@ -74,9 +73,8 @@
 
 eg: 
 
-<img src="assets/bad_shooting_angle2.jpg" alt="bad_shooting_angle" style="max-height: 150px;" />
-
-<img src="assets/bad_shooting_angle2_transformed.png" alt="bad_shooting_angle_transformed" style="max-height: 150px;" />
+![bad_shooting_angle](assets/bad_shooting_angle2.jpg)
+![bad_shooting_angle_transformed](assets/bad_shooting_angle2_transformed.png)
 
 
 如上图，拍摄角度与棋盘水平面过于接近，黑炮后面的网格交点被棋子覆盖，容易导致识别错误，即使透视变换成俯视图，也会因为棋子变形而遮盖掉该点的信息.
@@ -112,7 +110,7 @@ eg:
 
 #### 为什么不用分割成块？
 
-<img src="assets/detected_lines.png" alt="detected_lines" style="max-height: 250px;" />
+![detected_lines](assets/detected_lines.png)
 
 1. 类似国际象棋的方法，具有一定局限性，
 2. 既要考虑拍摄角度，不能过于倾斜，又要求棋子摆放整齐，显然在实际过程中，很难满足
