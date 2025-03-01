@@ -1,1 +1,13 @@
 .DS_Store
+*.egg-info
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.vscode
+.venv
+data/
+work_dirs/
+
+
+# 缓存
+__pycache__

@@ -262,17 +262,38 @@ loss 使用 `LabelSmoothLoss`, 如果使用 `CrossEntropyLoss` 应该也可以�
 - 局限性
 - 未来工作方向
 
+# 技术框架
+
+本项目基于以下开源框架开发：
+
+- [MMPose](https://github.com/open-mmlab/mmpose)：用于棋盘关键点检测
+- [MMPretrain](https://github.com/open-mmlab/mmpretrain)：用于棋子分类识别
+
+感谢OpenMMLab团队提供的这些优秀工具，使本项目的开发成为可能。
+
+
 # 参考文献
 
 
 # 附录
 
 - [End-to-End Chess Recognition](https://arxiv.org/html/2310.04086?_immersive_translate_auto_translate=1)
+- [RTMPose]()
 
 
 ## 代码
 - 实现细节
 - 使用说明
+
+
+### 安装
+
+```bash
+pip install -e .
+```
+
+
+
 
 ## 数据集
 - 数据统计
