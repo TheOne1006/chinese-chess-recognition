@@ -285,14 +285,11 @@ loss 使用 `LabelSmoothLoss`, 如果使用 `CrossEntropyLoss` 应该也可以�
 - 实现细节
 - 使用说明
 
-
-### 安装
+## 安装
 
 ```bash
 pip install -e .
 ```
-
-
 
 
 ## 数据集

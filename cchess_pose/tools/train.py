@@ -15,7 +15,7 @@ from mmengine.config import Config, DictAction
 from mmengine.runner import Runner
 
 
-from cchess_pose.configs import *
+from cchess_pose.datasets import *
 from cchess_pose.models import *
 
 

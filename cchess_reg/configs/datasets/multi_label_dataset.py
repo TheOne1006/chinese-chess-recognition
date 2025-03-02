@@ -17,25 +17,6 @@ dict_cate_names = {
     'black_pawn': 'p',
 }
 
-# dict_cate_weights = {
-#     'point': .2,
-#     'other': 1.,
-#     'red_king': 1.5,
-#     'red_advisor': 1.,
-#     'red_bishop': 1.,
-#     'red_knight': 1.2,
-#     'red_rook': 1.,
-#     'red_cannon': 1.,
-#     'red_pawn': .5,
-#     'black_king': 1.5,
-#     'black_advisor': 1.,
-#     'black_bishop': 1.,
-#     'black_knight': 1.2,
-#     'black_rook': 1.2,
-#     'black_cannon': 1.,
-#     'black_pawn': .8,
-# }
-
 # class_weight = [dict_cate_weights[cate] for cate in dict_cate_names.keys()]
 
 # dataset settings
@@ -64,10 +45,10 @@ train_pipeline = [
     # 截取
     dict(type='CenterCrop', crop_size=(400, 450)),
     # 混淆处理
-    dict(type='CChessCachedMixUp', 
-         prob=0.3,
-         img_scale=(400, 450), 
-         rotate_angle=(-90, 90)),
+    # dict(type='CChessCachedMixUp', 
+    #      prob=0.3,
+    #      img_scale=(400, 450), 
+    #      rotate_angle=(-90, 90)),
     dict(type='CChessMixSinglePngCls',
          img_scale=(400, 450),
          max_mix_cells=15,

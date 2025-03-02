@@ -41,5 +41,3 @@ class CChessDataSample(DataSample):
             self.set_field(
                 name='num_classes', value=len(score), field_type='metainfo')
         return self
-
-    pass

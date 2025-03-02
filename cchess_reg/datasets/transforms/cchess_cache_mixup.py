@@ -8,6 +8,8 @@ import mmcv
 from mmcv.transforms.utils import cache_randomness
 
 
+
+# Deprecated, 使用 `CChessMixSinglePngCls` 替代
 @TRANSFORMS.register_module()
 class CChessCachedMixUp(BaseTransform):
     """CChessCached mixup data augmentation.

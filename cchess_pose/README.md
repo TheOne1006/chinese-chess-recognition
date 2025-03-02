@@ -14,7 +14,43 @@ Base on [MMPose](https://github.com/open-mmlab/mmpose)
 
 
 
-## 目录
+## 目录结构
+
+```
+cchess_pose/
+├── configs/
+├── data/
+├── datasets/
+├── models/
+|   |-- heads/rtmcc_head2.py
+├── train.py
+├── test.py
+```
+
+1. rtmcc_head2 继承 `RTMHead`, 扩展了 RTMHead 对其他 loss 的支持
+2. 数据集为 coco 模式
+
+
+### datasets
+
+
+```
+datasets/
+├── datasets/ # 自定义Dataset 替代默认 Dataset
+├── transforms/ # 自定义Transforms
+├── __init__.py
+```
+
+
+### transforms
+
+- `CChessRandomFlip4` 随机翻转
+- `RandomPerspectiveTransform` 随机透视变换
+- `RandomUseFullImg` 随机使用完整图片
+- `CopyParseWithPose4` 根据 4 个角点，替换为其他棋盘的数据
+- `RandomGetBBoxCenterScale` 随机获取bbox中心和缩放
+- `RandomHalfCChess4` 随机镜像翻转半个棋盘
+
 
 
 ## Scripts
@@ -22,7 +58,7 @@ Base on [MMPose](https://github.com/open-mmlab/mmpose)
 ```bash
 cd cchess_pose
 # 训练
-python train.py configs/rtmpose-4/rtmpose-t-cchess_4.py
+python tools/train.py configs/rtmpose-4/rtmpose-t-cchess_4.py
 
 ```
 
