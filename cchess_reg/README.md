@@ -88,6 +88,6 @@ data/
 
 ```bash
 # 训练
-python train.py configs/swinv2-nano_cchess16-256.py
+python tools/train.py configs/swinv2-nano_cchess16-256.py
 
 ```

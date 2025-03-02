@@ -7,6 +7,7 @@
 .venv
 data/
 work_dirs/
+checkpoints/
 
 
 # 缓存

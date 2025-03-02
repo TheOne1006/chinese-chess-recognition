@@ -53,21 +53,12 @@ datasets/
 
 
 
-
-
-
-
-
-
-
-
-
 ## Scripts
 
 ```bash
 cd cchess_pose
 # 训练
-python train.py configs/rtmpose-4/rtmpose-t-cchess_4.py
+python tools/train.py configs/rtmpose-4/rtmpose-t-cchess_4.py
 
 ```
 
