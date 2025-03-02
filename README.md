@@ -9,6 +9,13 @@
 
 > 黑子(将士相马车炮卒 对应简写`kabnrcp`) 、红子(帅将相马车炮卒 对应简写`KABNRCP`) +  其他 简写`x`  + 空位 简写`.`
 
+
+colab examples
+pose-detection [![colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TheOne1006/chinese-chess-recognition/blob/main/cchess_pose/examples/run_on_colab.ipynb)
+
+
+
+
 ## Pretrained Model
 
 - https://huggingface.co/spaces/yolo12138/Chinese_Chess_Recognition/tree/main/onnx
