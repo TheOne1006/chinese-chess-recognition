@@ -1,4 +1,4 @@
-_base_ = ['mmpose::_base_/default_runtime.py']
+_base_ = ['runtime.py']
 
 # 数据集类型及路径
 dataset_type = 'CChessDataset'

@@ -1,4 +1,6 @@
-# MMPose For CChess
+# CChess Pose Estimation
+
+Base on [MMPose](https://github.com/open-mmlab/mmpose)
 
 
 ## Algorithm
@@ -15,10 +17,21 @@
 ## 目录
 
 
+## Scripts
+
+```bash
+cd cchess_pose
+# 训练
+python train.py configs/rtmpose-4/rtmpose-t-cchess_4.py
+
+```
+
+
 
 ## TODO
 
-- [ ] 训练
+- [x] 训练
+  - [ ] 多卡训练
 - [ ] 测试
 - [ ] 推理
 - [ ] 部署
