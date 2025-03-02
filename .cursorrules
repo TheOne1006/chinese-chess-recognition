@@ -1,0 +1,123 @@
+{
+  "rules": [
+    {
+      "name": "MMLab Model Definition",
+      "trigger": ["model", "backbone", "head", "neck", "loss"],
+      "language": "python",
+      "pattern": "**/*model*.py",
+      "actions": [
+        {
+          "type": "code_completion",
+          "template": [
+            "from mmengine.model import BaseModel",
+            "from mmengine.registry import MODELS",
+            "",
+            "@MODELS.register_module()",
+            "class ${1:ClassName}(BaseModel):",
+            "    def __init__(self, ${2:config}):",
+            "        super().__init__()",
+            "        # Model component initialization",
+            "        self.build_architecture()",
+            "",
+            "    def build_architecture(self) -> None:",
+            "        \"\"\"Initialize model layers and components\"\"\"",
+            "        ${3:# CNN/Transformer layers}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Config File Validation",
+      "language": "yaml",
+      "pattern": "configs/**/*.py",
+      "actions": [
+        {
+          "type": "lint",
+          "command": "python -m mim check config"
+        }
+      ]
+    },
+    {
+      "name": "Dataset Class Template",
+      "trigger": ["dataset", "data pipeline"],
+      "language": "python",
+      "pattern": "**/datasets/*.py",
+      "actions": [
+        {
+          "type": "snippet",
+          "content": [
+            "from mmdet.datasets import BaseDataset",
+            "",
+            "class ${1:CustomDataset}(BaseDataset):",
+            "    METAINFO = {",
+            "        'classes': (${2:class_names}),",
+            "        'palette': [${3:color_values}]",
+            "    }",
+            "",
+            "    def __init__(self,", 
+            "                 ann_file: str,",
+            "                 pipeline: List[dict],",
+            "                 data_root: Optional[str] = None,",
+            "                 test_mode: bool = False):",
+            "        super().__init__(",
+            "            ann_file=ann_file,",
+            "            pipeline=pipeline,",
+            "            data_root=data_root,",
+            "            test_mode=test_mode",
+            "        )"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Training Hook",
+      "trigger": ["hook", "callback"],
+      "language": "python",
+      "pattern": "**/hooks/*.py",
+      "actions": [
+        {
+          "type": "template",
+          "content": [
+            "from mmengine.hooks import Hook",
+            "from mmengine.logging import MMLogger",
+            "",
+            "class ${1:CustomHook}(Hook):",
+            "    \"\"\"Custom training hook for MMPose/MMPretrain\"\"\"",
+            "    ",
+            "    def before_train_iter(self,",
+            "                         runner,",
+            "                         batch_idx: int,",
+            "                         data_batch: dict) -> None:",
+            "        \"\"\"Pre-iteration operations\"\"\"",
+            "        ${2:# Custom logic}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MMLab Code Quality",
+      "language": "python",
+      "pattern": ["**/*.py", "!tests/**", "!docs/**"],
+      "actions": [
+        {
+          "type": "format",
+          "command": "ruff format"
+        },
+        {
+          "type": "lint",
+          "command": "ruff check --fix"
+        },
+        {
+          "type": "type_check",
+          "command": "mypy --strict"
+        }
+      ]
+    },
+  ],
+  "exclude": [
+    "**/__pycache__/**",
+    "**/legacy/**",
+    "**/tmp/**",
+    "**/test_results/**"
+  ]
+}
