@@ -18,7 +18,6 @@ from mmengine.utils import digit_version
 from mmengine.utils.dl_utils import TORCH_VERSION
 
 
-from cchess_reg.configs import *
 from cchess_reg.models import *
 from cchess_reg.datasets import *
 from cchess_reg.evaluation import *

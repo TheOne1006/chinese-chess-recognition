@@ -121,6 +121,6 @@ dataset_info = dict(
 
 
 
-@DATASETS.register_module(name='CChessDataset')
-class CChessDataset(BaseCocoStyleDataset):
+@DATASETS.register_module(name='CChessDatasetPose4')
+class CChessDatasetPose4(BaseCocoStyleDataset):
     METAINFO: dict = dataset_info

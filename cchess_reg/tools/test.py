@@ -4,12 +4,24 @@ import os
 import os.path as osp
 from copy import deepcopy
 
+os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "0"
+os.environ["PYTORCH_MPS_DEVICE_OVERRIDE"] = "0"
+import torch
+
+if hasattr(torch.backends, 'mps'):
+    torch.backends.mps.is_available = lambda: False
+
 import mmengine
 from mmengine.config import Config, ConfigDict, DictAction
 from mmengine.evaluator import DumpResults
 from mmengine.registry import RUNNERS
 from mmengine.runner import Runner
 
+
+from cchess_reg.models import *
+from cchess_reg.datasets import *
+from cchess_reg.evaluation import *
+from cchess_reg.apis import *
 
 def parse_args():
     parser = argparse.ArgumentParser(

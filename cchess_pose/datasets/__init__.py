@@ -1,4 +1,4 @@
-from .datasets import CChessDataset
+from .datasets import CChessDatasetPose4
 from .transforms import (
     CChessRandomFlip4,
     RandomPerspectiveTransform,
@@ -9,7 +9,7 @@ from .transforms import (
 )
 
 __all__ = [
-    'CChessDataset',
+    'CChessDatasetPose4',
     'CChessRandomFlip4',
     'RandomPerspectiveTransform',
     'RandomUseFullImg',

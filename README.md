@@ -19,6 +19,7 @@ pose-detection [![colab](https://colab.research.google.com/assets/colab-badge.sv
 ## Pretrained Model
 
 - https://huggingface.co/spaces/yolo12138/Chinese_Chess_Recognition/tree/main/onnx
+- 
 
 
 # 摘要

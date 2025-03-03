@@ -40,10 +40,14 @@ class CChessTableHead(MultiLabelClsHead):
     def forward(self, feats: Tuple[torch.Tensor]) -> torch.Tensor:
         """前向传播过程"""
         logits = self.pre_logits(feats)
-        # 校验 logits.shape
+        # 校验 logits.shape - 使用条件语句替代断言，以便兼容ONNX导出
 
-        assert logits.ndim == 4, 'logits.ndim must be 4'
-        assert logits.shape[1:] == (16, 10, 9), 'logits.shape must be [BS, 16, 10, 9]'
+        # 条件检查和异常抛出
+        if logits.ndim != 4:
+            raise ValueError('logits.ndim must be 4')
+        if logits.shape[1:] != (16, 10, 9):
+            raise ValueError('logits.shape must be [BS, 16, 10, 9]')
+        
         # 转换成 [BS, Cls, H, W] -> [BS, H, W, Cls]
         logits = logits.permute(0, 2, 3, 1)
         # 转换成 [BS, H, W, Cls] -> [BS, H * W, Cls]
