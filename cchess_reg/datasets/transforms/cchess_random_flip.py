@@ -59,11 +59,9 @@ class CChessRandomFlip(RandomFlip):
         results['img'] = mmcv.imflip(
             results['img'], direction=results['flip_direction'])
 
-        img_shape = results['img'].shape[:2]
-
         # 翻转标签
         if results.get('gt_label', None) is not None:
-            results['gt_label'] = self._flip_label(results['gt_label'],
-                                                   img_shape,
-                                                   results['flip_direction'])
+            results['gt_label'] = self._flip_label(
+                results['gt_label'],
+                results['flip_direction'])
 

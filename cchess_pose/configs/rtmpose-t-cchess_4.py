@@ -1,7 +1,7 @@
 _base_ = ['runtime.py']
 
 # 数据集类型及路径
-dataset_type = 'CChessDataset'
+dataset_type = 'CChessDatasetPose4'
 data_mode = 'topdown'
 data_root = 'data/coco_4/'
 
