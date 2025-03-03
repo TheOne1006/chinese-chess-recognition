@@ -42,12 +42,8 @@ class CChessTableHead(MultiLabelClsHead):
         logits = self.pre_logits(feats)
         # 校验 logits.shape - 使用条件语句替代断言，以便兼容ONNX导出
 
-        # 条件检查和异常抛出
-        if logits.ndim != 4:
-            raise ValueError('logits.ndim must be 4')
-        if logits.shape[1:] != (16, 10, 9):
-            raise ValueError('logits.shape must be [BS, 16, 10, 9]')
-        
+        # assert logits.ndim == 4, 'logits.ndim must be 4'
+        # assert logits.shape[1:] == (16, 10, 9), 'logits.shape must be [BS, 16, 10, 9]'
         # 转换成 [BS, Cls, H, W] -> [BS, H, W, Cls]
         logits = logits.permute(0, 2, 3, 1)
         # 转换成 [BS, H, W, Cls] -> [BS, H * W, Cls]
@@ -143,11 +139,9 @@ class CChessTableHead(MultiLabelClsHead):
 
         Including softmax and set ``pred_label`` of data samples.
         """
-        #cls_score.shape = [BS * 90, Cls]
-        # cls_score = cls_score.reshape(-1, cls_score.size(-1))
         # 计算 softmax
         pred_scores = F.softmax(cls_score, dim=-1)
-        # 计算 argmax [BS, 90]
+        # 计算 argmax [BS, 90]，使用固定的 k=1 而不是 self.topk
         pred_labels = pred_scores.argmax(dim=-1, keepdim=True).detach()
 
         # # torch.Size([BS, 90]) 提取 最大值,  并移除最后一个维度

@@ -25,6 +25,9 @@ from cchess_reg.models import *
 from cchess_reg.datasets import *
 from cchess_reg.evaluation import *
 from cchess_reg.apis import *
+from cchess_reg.visualization import *
+from cchess_reg.deploy import *
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Export model to backends.')
