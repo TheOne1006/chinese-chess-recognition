@@ -26,6 +26,9 @@ from cchess_reg.datasets import *
 from cchess_reg.evaluation import *
 from cchess_reg.apis import *
 from cchess_reg.visualization import *
+from cchess_reg.deploy import *
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Export model to backends.')
     parser.add_argument('deploy_cfg', help='deploy config path')
@@ -317,13 +320,13 @@ def main():
     if backend == Backend.SNPE:
         extra['uri'] = args.uri
     # get backend inference result, try render
-    # create_process(
-    #     f'visualize {backend.value} model',
-    #     target=visualize_model,
-    #     args=(model_cfg_path, deploy_cfg_path, backend_files, args.test_img,
-    #           args.device),
-    #     kwargs=extra,
-    #     ret_value=ret_value)
+    create_process(
+        f'visualize {backend.value} model',
+        target=visualize_model,
+        args=(model_cfg_path, deploy_cfg_path, backend_files, args.test_img,
+              args.device),
+        kwargs=extra,
+        ret_value=ret_value)
 
     # get pytorch model inference result, try visualize if possible
     create_process(
