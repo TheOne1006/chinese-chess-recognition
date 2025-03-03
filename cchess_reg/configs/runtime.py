@@ -61,5 +61,5 @@ default_hooks = dict(
 )
 
 vis_backends = [dict(type='LocalVisBackend'), dict(type='TensorboardVisBackend')]
-visualizer = dict(type='UniversalVisualizer', vis_backends=vis_backends)
+visualizer = dict(type='CChessVisualizer', vis_backends=vis_backends)
 
