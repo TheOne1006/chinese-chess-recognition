@@ -61,6 +61,7 @@ class FULL_CLASSIFIER_ONNX(BaseONNX):
                  input_size=(280, 315), # (w, h)
                  # 图片裁剪大小
                  crop_size=(400, 450), # (w, h)
+                 # 是否使用cuda
                  enable_cuda: bool = True
                  ):
         super().__init__(model_path, input_size, enable_cuda)
