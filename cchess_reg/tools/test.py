@@ -22,6 +22,7 @@ from cchess_reg.models import *
 from cchess_reg.datasets import *
 from cchess_reg.evaluation import *
 from cchess_reg.apis import *
+from cchess_reg.visualization import *
 
 def parse_args():
     parser = argparse.ArgumentParser(
