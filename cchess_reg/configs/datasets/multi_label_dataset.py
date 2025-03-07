@@ -53,13 +53,13 @@ train_pipeline = [
          img_scale=(400, 450),
          max_mix_cells=15,
          png_resources_path='data/single_cls2_png',
-         prob=0.3),
+         prob=0.7),
 
     # # 缩放 到 统一的尺寸
     dict(type='Resize', scale=(280, 315)), # original (280, 315)
     dict(type='CChessCachedCopyHalf', prob=0.3),
-    dict(type='CChessHalfFlip', flip_mode='horizontal', prob=0.3),
-    dict(type='CChessHalfFlip', flip_mode='vertical', prob=0.35),
+    dict(type='CChessHalfFlip', flip_mode='horizontal', prob=0.5),
+    dict(type='CChessHalfFlip', flip_mode='vertical', prob=0.5),
 
     dict(type='CChessRandomFlip', prob=[0.2, 0.2, 0.2], direction=['horizontal', 'vertical', 'diagonal']),
 
@@ -169,8 +169,8 @@ train_dataloader = dict(
 )
 
 val_dataloader = dict(
-    batch_size=2,
-    num_workers=2,
+    batch_size=8,
+    num_workers=4,
     dataset=dict(
         type=dataset_type,
         data_root=data_root,

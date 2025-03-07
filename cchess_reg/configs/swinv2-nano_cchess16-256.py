@@ -18,16 +18,16 @@ dict_cate_names = {
 }
 
 dict_cate_weights = {
-    'point': .2,
+    'point': .35,
     'other': 1.,
-    'red_king': 1.5,
+    'red_king': 1.,
     'red_advisor': 1.,
     'red_bishop': 1.,
     'red_knight': 1.,
     'red_rook': 1.,
     'red_cannon': 1.,
-    'red_pawn': .8,
-    'black_king': 1.5,
+    'red_pawn': 1.,
+    'black_king': 1.,
     'black_advisor': 1.,
     'black_bishop': 1.,
     'black_knight': 1., 
@@ -92,6 +92,7 @@ model = dict(
             # loss_weight=1.0,
             class_weight=class_weight,
             type='LabelSmoothLoss',
+            # 标签平滑值
             label_smooth_val=0.1,
             mode='original'
         ),
@@ -214,4 +215,4 @@ test_cfg = dict()
 auto_scale_lr = dict(base_batch_size=1024)
 
 
-# resume = True
+resume = True

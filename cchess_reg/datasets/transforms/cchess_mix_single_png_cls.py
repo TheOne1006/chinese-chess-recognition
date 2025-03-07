@@ -141,16 +141,28 @@ class CChessMixSinglePngCls(BaseTransform):
     def init_png_resources(self):
 
         cates = self.dict_cate_names.keys()
+        
+        
+        cache_dict_num = {}
+        
 
         for index, cate in enumerate(cates):
-            if cate in ['point', 'other']:
+            if cate in ['other']:
                 continue
 
             cate_png_dir = os.path.join(self.png_resources_path, cate)
+            
+            # 如果 目录不存在, 则 跳过
+            if not os.path.exists(cate_png_dir):
+                continue
+            
             cate_png_files = os.listdir(cate_png_dir)
 
             # filter png
             cate_png_files = [file for file in cate_png_files if file.endswith('.png')]
+            
+            
+            cache_dict_num[cate] = len(cate_png_files)
 
             for file in cate_png_files:
                 file_path = os.path.join(cate_png_dir, file)
@@ -180,6 +192,10 @@ class CChessMixSinglePngCls(BaseTransform):
                 )
 
                 self.cache_items.append(cache_item)
+                
+
+        for label, num in cache_dict_num.items():
+            print(f'The label {label} has {num} images.')
         
     @cache_randomness
     def get_indexes(self, cache: list, select_images_num: int) -> List[int]:
@@ -280,7 +296,7 @@ class CChessMixSinglePngCls(BaseTransform):
             cell_img = cv2.flip(cell_img, 1)
             mask = cv2.flip(mask, 1)
 
-        # 修改这部分代码
+        # 修改这部分
         origin_img_part = img[y:y+h, x:x+w]
         
 
@@ -298,7 +314,6 @@ class CChessMixSinglePngCls(BaseTransform):
             img[y:y+h, x:x+w] = cell_img * mask + origin_img_part * (1 - mask)
         except Exception as e:
             raise e
-        return img
 
     def transform(self, results: dict) -> dict:
         """CChessCachedMixUp transform function.
@@ -310,7 +325,7 @@ class CChessMixSinglePngCls(BaseTransform):
             dict: Updated result dict.
         """
 
-        if random.uniform(0, 1) > self.prob:
+        if random.uniform(0, 1) < self.prob:
             return results
         
         gt_label: list[int] = results['gt_label']
@@ -340,7 +355,7 @@ class CChessMixSinglePngCls(BaseTransform):
         # 随机获取 粘贴图的 cells 图像
         for paste_cell_index, cache_item in zip(gt_label_point_indexes, cache_items):
             # 修改 图片
-            results['img'] = self.paste_cell_img(paste_cell_index, results['img'], cache_item)
+            self.paste_cell_img(paste_cell_index, results['img'], cache_item)
             # 修改 label
             results['gt_label'][paste_cell_index] = cache_item.label
    
@@ -353,14 +368,10 @@ class CChessMixSinglePngCls(BaseTransform):
 
     def __repr__(self):
         repr_str = self.__class__.__name__
-        repr_str += f'(dynamic_scale={self.dynamic_scale}, '
-        repr_str += f'ratio_range={self.ratio_range}, '
-        repr_str += f'flip_ratio={self.flip_ratio}, '
-        repr_str += f'pad_val={self.pad_val}, '
-        repr_str += f'max_iters={self.max_iters}, '
-        repr_str += f'bbox_clip_border={self.bbox_clip_border}, '
-        repr_str += f'max_cached_images={self.max_cached_images}, '
-        repr_str += f'random_pop={self.random_pop}, '
+        repr_str += f'(img_scale={self.img_scale}, '
+        repr_str += f'cell_scale={self.cell_scale}, '
+        repr_str += f'rotate_angle={self.rotate_angle}, '
+        repr_str += f'png_resources_path={self.png_resources_path}, '
         repr_str += f'prob={self.prob})'
         return repr_str
 

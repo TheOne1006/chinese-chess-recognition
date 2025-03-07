@@ -16,13 +16,6 @@ class BaseONNX(ABC):
         allow_cuda = torch.cuda.is_available()
         if enable_cuda and allow_cuda:
             providers = [
-                ('CUDAExecutionProvider', {
-                    'device_id': 0,
-                    'arena_extend_strategy': 'kNextPowerOfTwo',
-                    'gpu_mem_limit': 2 * 1024 * 1024 * 1024,
-                    'cudnn_conv_algo_search': 'EXHAUSTIVE',
-                    'do_copy_in_default_stream': True,
-                }),
                 'CUDAExecutionProvider'
             ]
         else:
