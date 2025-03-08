@@ -189,7 +189,7 @@ cchess_prices_args = dict(
 
 # 评估器, 
 val_evaluator = [
-    dict(type='CChessPrecisionWithLayout'),
+    # dict(type='CChessPrecisionWithLayout'),
     dict(type='CChessPrecisionWith16Class'),
     dict(type='CChessAveragePrecision', average=None),
     dict(type='CChessAveragePrecision', average='macro'),
@@ -206,6 +206,7 @@ val_evaluator = [
     dict(type='CChessAveragePrecision', average='macro', **cchess_prices_args),
     dict(type='CChessMultiLabelMetric', average='macro', **cchess_prices_args),  # class-wise mean
     dict(type='CChessMultiLabelMetric', average='micro', **cchess_prices_args),  # overall mean
+    dict(type='CChessFullAccuracy', errK=(1, 3, 5)),
 ]
 
 # val_evaluator = dict(type='Accuracy', topk=(1, 5))

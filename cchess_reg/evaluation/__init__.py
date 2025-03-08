@@ -2,11 +2,14 @@ from .metrics import (
     CChessAveragePrecision, 
     CChessMultiLabelMetric,
     CChessPrecisionWith16Class, 
-    CChessPrecisionWithLayout
+    CChessPrecisionWithLayout,
+    CChessFullAccuracy
 )
 
 __all__ = [
     'CChessAveragePrecision', 
     'CChessMultiLabelMetric', 
     'CChessPrecisionWith16Class', 
-    'CChessPrecisionWithLayout']
+    'CChessPrecisionWithLayout',
+    'CChessFullAccuracy'
+]
