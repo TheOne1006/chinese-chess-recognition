@@ -64,8 +64,9 @@ model = dict(
         # 是否使用绝对位置嵌入
         img_size=256,
         use_abs_pos_embed=True,
-        # patch_size=8, # 默认 4
-        # window_size=8,
+        # patch_size=4 ，则将图像每 4×4 的像素区域转换为一个 token
+        # patch_size=4, # 默认 4
+        # window_size=16,
         drop_path_rate=0.1, # 增加正则化
         # pad_small_map=True,
         ),
@@ -81,7 +82,7 @@ model = dict(
     neck=dict(
         type='CChess10_9Neck',
         in_channels=288,  # 输入通道数
-        mid_channels=[256, 128],
+        mid_channels=[512, 256, 128],
         num_classes=len(dict_cate_names.keys()),
     ),
     head=dict(
@@ -93,7 +94,7 @@ model = dict(
             class_weight=class_weight,
             type='LabelSmoothLoss',
             # 标签平滑值
-            label_smooth_val=0.1,
+            label_smooth_val=0.2,
             mode='original'
         ),
         cal_acc=True,
@@ -215,4 +216,4 @@ test_cfg = dict()
 auto_scale_lr = dict(base_batch_size=1024)
 
 
-resume = True
+# resume = True
