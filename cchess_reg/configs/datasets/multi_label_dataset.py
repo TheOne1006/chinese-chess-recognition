@@ -156,6 +156,8 @@ test_pipeline = [
 
 data_root = 'data/cchess_multi_label_layout'
 
+
+
 train_dataloader = dict(
     batch_size=32,
     num_workers=4,
