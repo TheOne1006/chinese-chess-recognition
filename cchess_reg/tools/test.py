@@ -11,6 +11,10 @@ import torch
 if hasattr(torch.backends, 'mps'):
     torch.backends.mps.is_available = lambda: False
 
+# 添加对 HistoryBuffer 的支持
+from mmengine.logging import HistoryBuffer
+torch.serialization.add_safe_globals([HistoryBuffer])
+
 import mmengine
 from mmengine.config import Config, ConfigDict, DictAction
 from mmengine.evaluator import DumpResults
