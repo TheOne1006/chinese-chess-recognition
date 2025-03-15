@@ -82,7 +82,7 @@ model = dict(
     neck=dict(
         type='CChess10_9Neck',
         in_channels=288,  # 输入通道数
-        mid_channels=[512, 256, 128],
+        mid_channels=[256, 64],
         num_classes=len(dict_cate_names.keys()),
     ),
     head=dict(
@@ -94,7 +94,7 @@ model = dict(
             class_weight=class_weight,
             type='LabelSmoothLoss',
             # 标签平滑值
-            label_smooth_val=0.2,
+            label_smooth_val=0.08,
             mode='original'
         ),
         cal_acc=True,
@@ -124,7 +124,7 @@ data_preprocessor = dict(
 
 data_root = 'data/cchess_multi_label_layout'
 
-max_epochs = 200
+max_epochs = 250
 
 # 优化器
 # optimizer = dict(type='AdamW', lr=1.5e-5, weight_decay=0.02)
